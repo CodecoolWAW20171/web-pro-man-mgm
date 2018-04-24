@@ -13,16 +13,30 @@
     </head>
     <body>
         <h1>ProMan</h1>
-        <div class="place">
-            <span  class="card" id="a">task 1 </span>
+        
+        <div id="new-board-form-div-wrapper">
+            <button id="new-board">+ New Board</button>
+            <div id="new-board-form-div" style="display:none">
+                <form id="new-board-form" name="new-board-form" method="POST" action="/new-board">
+                    <label for="board-name"> New Board Name</label>
+                    <input type="text" id="board-name" required>
+                    <input type="submit"
+                           name="create-new-board"
+                           value="Create Board"
+                           onclick="dom.addAndDisplayNewBoard()">
+                </form>
+            </div>
         </div>
-        <div class="place">
-            <span  class="card" id="b">task 2 </span>
-        </div>
+        <div id="boards"></div>
 
-        <div class="place"></div>
-        <div class="place"></div>
-        
-        
+        <div class="place">
+                <span  class="card" id="a">task 1 </span>
+            </div>
+            <div class="place">
+                <span  class="card" id="b">task 2 </span>
+            </div>
+    
+            <div class="place"></div>
+            <div class="place"></div>
     </body>
 </html>
