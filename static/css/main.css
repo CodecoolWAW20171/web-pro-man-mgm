@@ -1,3 +1,15 @@
 #boards {
     background-color: green;
 }
+
+.card {
+    width: 50px;
+    padding: 5px;
+    border: 2px solid #640404;
+}
+
+.place {
+    width: 80px;
+    padding: 10px;
+    border: 3px solid #070aa8;
+}
