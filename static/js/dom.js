@@ -1,7 +1,7 @@
 // It uses data_handler.js to visualize elements
 let dom = {
     loadBoards: function() {
-        // retrieves boards and makes showBoards called
+        dataHandler.getBoards()
     },
     showBoards: function(boards) {
         // shows boards appending them to #boards div
