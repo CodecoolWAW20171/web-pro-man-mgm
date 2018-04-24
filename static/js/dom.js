@@ -2,7 +2,7 @@
 let dom = {
     loadBoards: function() {
         // retrieves boards and makes showBoards called
-        datahandler.getBoards(datahandler.showBoards);
+        dataHandler.getBoards(dataHandler.showBoards);
     },
     showBoards: function(boards) {
         // shows boards appending them to #boards div
