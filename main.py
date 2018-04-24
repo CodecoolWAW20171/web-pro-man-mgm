@@ -2,7 +2,7 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/", methods=["GET","POST"])
 def boards():
     ''' this is a one-pager which shows all the boards and cards '''
     return render_template('boards.html')

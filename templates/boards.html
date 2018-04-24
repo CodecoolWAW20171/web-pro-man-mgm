@@ -16,11 +16,11 @@
         <div id="new-board-form-div-wrapper">
             <button id="new-board">+ New Board</button>
             <div id="new-board-form-div" style="display:none">
-                <form id="new-board-form" name="new-board-form">
+                <form id="new-board-form" name="new-board-form" method="POST">
                     <label for="board-name"> New Board Name</label>
-                    <input type="text">
-                    <input type="submit" name="create-new-board" value="Create Board">
-            </form>
+                    <input type="text" id="board-name">
+                    <input type="submit" name="create-new-board" value="Create Board" onclick="dom.addAndDisplayNewBoard()">
+                </form>
             </div>
         </div>
         <div id="boards"></div>
