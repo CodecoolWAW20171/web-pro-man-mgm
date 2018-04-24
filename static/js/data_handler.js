@@ -22,9 +22,11 @@ let dataHandler = {
     },
     getBoards: function(callback) {
         // the boards are retrieved and then the callback function is called with the boards
+        listOfBoards = this._data;
     },
     getBoard: function(boardId, callback) {
         // the board is retrieved and then the callback function is called with the board
+        callback(this._data.getItem(boardId))
     },
     getStatuses: function(callback) {
         // the statuses are retrieved and then the callback function is called with the statuses
