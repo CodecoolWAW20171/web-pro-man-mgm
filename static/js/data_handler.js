@@ -76,6 +76,7 @@ let dataHandler = {
             "status_id": statusId,
             "order": dataHandler.getNewCardOrder(statusId,boardId),
         }
+        callback(card)
     }
     getNewCardOrder: (statusID, boardID) {
         let cards = dataHandler._data.cards;
