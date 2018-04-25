@@ -58,6 +58,10 @@ let dom = {
             }
             var data = ev.dataTransfer.getData("text");
             ev.target.appendChild(document.getElementById(data));
+            let placesForCard = document.getElementsByClassName("place");
+            for (let i=0; i<placesForCard.length; i++) {
+                placesForCard[i].style.border = "3px solid green"
+            }
         };
         
         function allowDrop(ev) {
