@@ -36,9 +36,26 @@ let dataHandler = {
     },
     getCardsByBoardId: function (boardId, callback) {
         // the cards are retrieved and then the callback function is called with the cards
+        let cards = [];
+        this._data.cards.forEach(function (entry) {
+            if (entry.board_id === boardId)
+            {
+                cards.push(entry);
+            }
+        })
+        callback(cards);
     },
     getCard: function (cardId, callback) {
         // the card is retrieved and then the callback function is called with the card
+        let card;
+        this._data.cards.forEach(function (entry) {
+            if (entry.id === cardId)
+            {
+                card = entry;
+            }
+        callback(card)
+        })
+
     },
     createNewBoard: function (boardTitle, callback) {
         // creates new board, saves it and calls the callback function with its data
