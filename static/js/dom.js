@@ -25,6 +25,7 @@ let dom = {
                 board.appendChild(statusDiv);
                 placeForCard = document.createElement('div');
                 placeForCard.setAttribute('class', 'place');
+                placeForCard.style.border = "3px solid green";
                 statusDiv.appendChild(placeForCard);
                 statusDiv.appendChild(placeForCard);
             };
@@ -43,10 +44,18 @@ let dom = {
         // it adds necessary event listeners also
         function drag(ev) {
             ev.dataTransfer.setData("text", ev.target.id);
+            let placesForCard = document.getElementsByClassName("place");
+            for (let i=0; i<placesForCard.length; i++) {
+            placesForCard[i].style.border = "3px solid blue" ;
+            }
         };
         
         function drop(ev) {
             ev.preventDefault();
+            let placesForCard = document.getElementsByClassName("place");
+            for (let i=0; i<placesForCard.length; i++) {
+                placesForCard[i].style.border = "3px solid green"
+            }
             var data = ev.dataTransfer.getData("text");
             ev.target.appendChild(document.getElementById(data));
         };
