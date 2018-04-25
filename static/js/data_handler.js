@@ -74,20 +74,19 @@ let dataHandler = {
             "title": cardTitle,
             "board_id": boardId,
             "status_id": statusId,
-            "order": dataHandler.getNewCardOrder(statusId,boardId),
+            "order": dataHandler.getNewCardOrder(statusId, boardId),
         }
         callback(card)
-    }
-    getNewCardOrder: (statusID, boardID) {
-        let cards = dataHandler._data.cards;
-        let order = 1;
-        cards.forEach(function(card) {
-            if (card.board_id === boardID && card.status_id === statusID){
-                order += 1
-            }
-        }
-        return order;
-
-    }
-    // here comes more features
-};
+    },
+    getNewCardOrder: function (statusID, boardID) {
+    let cards = dataHandler._data.cards;
+    let order = 1;
+    cards.forEach(function (card) {
+        if (card.board_id === boardID && card.status_id === statusID) {
+            order += 1
+        };
+    })
+    return order;
+}
+// here comes more features
+}

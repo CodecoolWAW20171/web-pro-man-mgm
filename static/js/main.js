@@ -4,7 +4,10 @@ function init() {
     dataHandler.init();
     // loads the boards to the screen
     dom.loadBoards();
-    dom.loadCards();
+    for (let i=0; i<dataHandler._data.cards.length; i++)
+    {
+        dom.loadCards(i)
+    }
     dom.createNewBoardButton('new-board');
 }
 
