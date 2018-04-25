@@ -27,7 +27,6 @@ let dom = {
                 placeForCard.setAttribute('class', 'place');
                 // loadCards(i);  TO BE IMPLEMENTED
                 statusDiv.appendChild(placeForCard);
-                statusDiv.appendChild(placeForCard);
 
             };
         };
@@ -66,7 +65,7 @@ let dom = {
             let statusID = card.status_id;
             let cardID = card.id;
             let div = document.getElementById("status" + boardID + "_" + statusID)
-            div.innerHTML += (`<span class=\"card\" id="${cardID}">${card.title}</span>`)
+            div.innerHTML += (`<div class = "place"><span class=\"card\" id="${cardID}">${card.title}</span></div>`)
 
         })
         let listCards = document.getElementsByClassName("card");
