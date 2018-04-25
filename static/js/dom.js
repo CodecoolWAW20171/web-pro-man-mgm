@@ -21,7 +21,7 @@ let dom = {
                 let statusDiv = document.createElement('div');
                 statusDiv.setAttribute('class', 'status' + j);
                 statusDiv.setAttribute('id', 'status' + (i+1) + '_' + j);
-                statusDiv.innerHTML = "status" + j + " miejsce na karty" + "<br>";
+                statusDiv.innerHTML = dataHandler._data.statuses[j-1].name + "<br>";
                 board.appendChild(statusDiv);
                 placeForCard = document.createElement('div');
                 placeForCard.setAttribute('class', 'place');
