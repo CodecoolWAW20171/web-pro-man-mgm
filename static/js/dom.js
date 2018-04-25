@@ -25,7 +25,6 @@ let dom = {
                 board.appendChild(statusDiv);
                 placeForCard = document.createElement('div');
                 placeForCard.setAttribute('class', 'place');
-                // loadCards(i);  TO BE IMPLEMENTED
                 statusDiv.appendChild(placeForCard);
 
             };
