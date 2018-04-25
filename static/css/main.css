@@ -1,5 +1,8 @@
 .boards {
     background-color: green;
+    display: block;
+    width: 100%;
+    clear: both;
 }
 
 .card {
@@ -11,4 +14,40 @@
 .place {
     width: 80px;
     padding: 10px;
+}
+
+.status1 {
+    background-color: darkseagreen;
+    margin-bottom:30px;
+    width: 20%;
+    float: left;
+    margin:1%;
+    padding:1%;
+}
+
+.status2 {
+    background-color: darkseagreen;
+    margin-bottom:30px;
+    width: 20%;
+    float: left;
+    margin:1%;
+    padding:1%;
+}
+
+.status3 {
+    background-color: darkseagreen;
+    margin-bottom:30px;
+    width: 20%;
+    float: left;
+    margin:1%;
+    padding:1%;
+}
+
+.status4 {
+    background-color: darkseagreen;
+    margin-bottom:30px;
+    width: 20%;
+    float: left;
+    margin:1%;
+    padding:1%;
 }

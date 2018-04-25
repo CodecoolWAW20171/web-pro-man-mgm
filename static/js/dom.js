@@ -8,11 +8,12 @@ let dom = {
         // shows boards appending them to #boards div
         // it adds necessary event listeners also
         var boardsDiv = document.createElement('div');
-        boardsDiv.setAttribute('class', 'boards');
+        boardsDiv.setAttribute('id', 'main');
         document.body.appendChild(boardsDiv);
         for (let i = 0; i < boards.length; i++) {
             let board = document.createElement('div');
             board.setAttribute('id', 'board' + i);
+            board.setAttribute('class', 'boards');
             board.innerHTML = boards[i].title + "<br><br>";
             boardsDiv.appendChild(board);
 
@@ -25,8 +26,7 @@ let dom = {
                 board.appendChild(statusDiv);
                 placeForCard = document.createElement('div');
                 placeForCard.setAttribute('class', 'place');
-                placeForCard.style.border = "3px solid green";
-                statusDiv.appendChild(placeForCard);
+                placeForCard.style.border = "3px solid darkseagreen";
                 statusDiv.appendChild(placeForCard);
             };
         };
@@ -54,14 +54,10 @@ let dom = {
             ev.preventDefault();
             let placesForCard = document.getElementsByClassName("place");
             for (let i=0; i<placesForCard.length; i++) {
-                placesForCard[i].style.border = "3px solid green"
+                placesForCard[i].style.border = "3px solid darkseagreen"
             }
             var data = ev.dataTransfer.getData("text");
             ev.target.appendChild(document.getElementById(data));
-            let placesForCard = document.getElementsByClassName("place");
-            for (let i=0; i<placesForCard.length; i++) {
-                placesForCard[i].style.border = "3px solid green"
-            }
         };
         
         function allowDrop(ev) {
