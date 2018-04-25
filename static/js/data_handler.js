@@ -38,11 +38,23 @@ let dataHandler = {
     },
     getCardsByBoardId: function (boardId, callback) {
         // the cards are retrieved and then the callback function is called with the cards
-        callback(this._data.cards[boardId]);
+        let cards = [];
+        this._data.cards.forEach(function (entry) {
+            if (entry.board_id === boardId) {
+                cards.push(entry);
+            }
+        })
+        callback(cards);
     },
     getCard: function (cardId, callback) {
         // the card is retrieved and then the callback function is called with the card
-        callback(this._data.cards[cardId]);
+        let card;
+        this._data.cards.forEach(function (entry) {
+            if (entry.id === cardId) {
+                card = entry;
+            }
+        })
+        callback(card);
     },
     createNewBoard: function (boardTitle, callback) {
         // creates new board, saves it and calls the callback function with its data
@@ -55,8 +67,26 @@ let dataHandler = {
         dataHandler._saveData();
         callback(board);
     },
-    createNewCard: function (cardTitle, boatrdId, statusId, callback) {
+    createNewCard: function (cardTitle, boardId, statusId, callback) {
         // creates new card, saves it and calls the callback function with its data
-    }
-    // here comes more features
-};
+        let card = {
+            "id": dataHandler._data.cards.length + 1,
+            "title": cardTitle,
+            "board_id": boardId,
+            "status_id": statusId,
+            "order": dataHandler.getNewCardOrder(statusId, boardId),
+        }
+        callback(card)
+    },
+    getNewCardOrder: function (statusID, boardID) {
+    let cards = dataHandler._data.cards;
+    let order = 1;
+    cards.forEach(function (card) {
+        if (card.board_id === boardID && card.status_id === statusID) {
+            order += 1
+        };
+    })
+    return order;
+}
+// here comes more features
+}

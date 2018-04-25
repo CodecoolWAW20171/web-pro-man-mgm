@@ -4,7 +4,7 @@ let dom = {
         // retrieves boards and makes showBoards called
         dataHandler.getBoards(dom.showBoards);
     },
-    showBoards: function (boards, statuses) {
+    showBoards: function (boards) {
         // shows boards appending them to #boards div
         // it adds necessary event listeners also
         var boardsDiv = document.createElement('div');
@@ -14,15 +14,16 @@ let dom = {
             let board = document.createElement('div');
             board.setAttribute('id', 'board' + i);
             board.setAttribute('class', 'boards');
+            board.setAttribute('id', 'board' + (i+1));
             board.innerHTML = boards[i].title + "<br><br>";
             boardsDiv.appendChild(board);
 
             /* appending statuses dives, for testing actually: */
-            for (let j=1; j<=statuses.length; j++) {
+            for (let j=1; j<=dataHandler._data.statuses.length; j++) {
                 let statusDiv = document.createElement('div');
                 statusDiv.setAttribute('class', 'status' + j);
-                statusDiv.setAttribute('id', 'status' + i + '_' + j);
-                statusDiv.innerHTML = "status" + j + " miejsce na karty" + "<br>";
+                statusDiv.setAttribute('id', 'status' + (i+1) + '_' + j);
+                statusDiv.innerHTML = dataHandler._data.statuses[j-1].name + "<br>";
                 board.appendChild(statusDiv);
                 placeForCard = document.createElement('div');
                 placeForCard.setAttribute('class', 'place');
@@ -49,7 +50,7 @@ let dom = {
             placesForCard[i].style.border = "3px solid blue" ;
             }
         };
-        
+
         function drop(ev) {
             ev.preventDefault();
             let placesForCard = document.getElementsByClassName("place");
@@ -59,7 +60,7 @@ let dom = {
             var data = ev.dataTransfer.getData("text");
             ev.target.appendChild(document.getElementById(data));
         };
-        
+
         function allowDrop(ev) {
             ev.preventDefault();
         };
@@ -67,19 +68,27 @@ let dom = {
         /* let place = document.getElementsByClassName('place')[0]; */
         /* place.innerHTML = cards[0].title; */
         /* For testing only, sample cards: */
+
+        cards.forEach(function(card) {
+            let boardID = card.board_id;
+            let statusID = card.status_id;
+            let cardID = card.id;
+            let div = document.getElementById("status" + boardID + "_" + statusID)
+            div.innerHTML += (`<div class = "place"><span class=\"card\" id="${cardID}">${card.title}</span></div>`)
+
+        })
         let listCards = document.getElementsByClassName("card");
-            for (let num=0; num<listCards.length; num++) {
+        for (let num=0; num<listCards.length; num++) {
                 listCards[num].setAttribute("draggable", "True");
                 listCards[num].addEventListener("dragstart", drag);
             };
-        
+
         /* places for cards to drop */
         let places = document.getElementsByClassName("place");
         for (let num=0; num<places.length; num++) {
             places[num].addEventListener("drop", drop);
             places[num].addEventListener("dragover", allowDrop)
         };
-    
     },
 
     createNewBoardButton: function (buttonID) {
