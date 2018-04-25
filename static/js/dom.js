@@ -4,20 +4,73 @@ let dom = {
         // retrieves boards and makes showBoards called
         dataHandler.getBoards(dom.showBoards);
     },
-    showBoards: function (boards) {
+    showBoards: function (boards, statuses) {
         // shows boards appending them to #boards div
         // it adds necessary event listeners also
-        var div = document.getElementById('boards');
+        var boardsDiv = document.createElement('div');
+        boardsDiv.setAttribute('class', 'boards');
+        document.body.appendChild(boardsDiv);
         for (let i = 0; i < boards.length; i++) {
-            div.innerHTML += boards[i].title + "<br><br>";
-        }
+            let board = document.createElement('div');
+            board.setAttribute('id', 'board' + i);
+            board.innerHTML = boards[i].title + "<br><br>";
+            boardsDiv.appendChild(board);
+
+            /* appending statuses dives, for testing actually: */
+            for (let j=1; j<=statuses.length; j++) {
+                let statusDiv = document.createElement('div');
+                statusDiv.setAttribute('class', 'status' + j);
+                statusDiv.setAttribute('id', 'status' + i + '_' + j);
+                statusDiv.innerHTML = "status" + j + " miejsce na karty" + "<br>";
+                board.appendChild(statusDiv);
+                placeForCard = document.createElement('div');
+                placeForCard.setAttribute('class', 'place');
+                statusDiv.appendChild(placeForCard);
+                statusDiv.appendChild(placeForCard);
+            };
+        };
+
     },
+
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
+        dataHandler.getCardsByBoardId(boardId, dom.showCards);
     },
+
     showCards: function (cards) {
         // shows the cards of a board
+
         // it adds necessary event listeners also
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        };
+        
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        };
+        
+        function allowDrop(ev) {
+            ev.preventDefault();
+        };
+
+        /* let place = document.getElementsByClassName('place')[0]; */
+        /* place.innerHTML = cards[0].title; */
+        /* For testing only, sample cards: */
+        let listCards = document.getElementsByClassName("card");
+            for (let num=0; num<listCards.length; num++) {
+                listCards[num].setAttribute("draggable", "True");
+                listCards[num].addEventListener("dragstart", drag);
+            };
+        
+        /* places for cards to drop */
+        let places = document.getElementsByClassName("place");
+        for (let num=0; num<places.length; num++) {
+            places[num].addEventListener("drop", drop);
+            places[num].addEventListener("dragover", allowDrop)
+        };
+    
     },
 
     createNewBoardButton: function (buttonID) {
