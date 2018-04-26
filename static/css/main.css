@@ -16,6 +16,10 @@
     padding: 10px;
 }
 
+.place.active {
+    border: 2px blue;
+}
+
 .hide {
     background-color: floralwhite;
     top: 10%;

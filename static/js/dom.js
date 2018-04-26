@@ -23,6 +23,7 @@ let dom = {
             let mainDivForStatuses = document.createElement("div");
             hideBtn.textContent = "Hide";
             board.appendChild(mainDivForStatuses);
+            mainDivForStatuses.style.display = "none";
             hideBtn.addEventListener("click", function(){
                 if (mainDivForStatuses.style.display === "none") {
                     hideBtn.textContent = "Hide";
@@ -32,7 +33,6 @@ let dom = {
                     hideBtn.textContent = "Show";
                 }
             });
-
 
             /* appending statuses dives, for testing actually: */
             for (let j=1; j<=dataHandler._data.statuses.length; j++) {
@@ -44,8 +44,45 @@ let dom = {
                 placeForCard = document.createElement('div');
                 placeForCard.setAttribute('class', 'place');
                 placeForCard.style.border = "3px solid darkseagreen";
-                statusDiv.appendChild(placeForCard);
+                statusDiv.addEventListener("dragenter", createPlace);
+                
             };
+        };
+
+        function createPlace(ev) {
+            let placeForCard = document.createElement('div');
+            placeForCard.setAttribute('class', 'place');
+            placeForCard.style.border = "3px solid blue";
+            placeForCard.addEventListener("dragover", allowDrop);
+            placeForCard.addEventListener("drop", drop);
+            
+            if (ev.target.className === "status1") {
+                console.log(ev.target);
+                ev.target.appendChild(placeForCard);
+            }
+        };
+
+        function deletePlace(ev) {
+            let places = document.getElementsByClassName("place");
+            let placeForCard = places[places.length - 1];
+            if (ev.target.className === "status1") {
+                ev.target.removeChild(placeForCard);
+            }
+        };
+
+        function drop(ev) {
+            ev.preventDefault();
+            let placesForCard = document.getElementsByClassName("place");
+            for (let i=0; i<placesForCard.length; i++) {
+                placesForCard[i].style.border = "3px solid darkseagreen"
+            }
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+            dataHandler.changeCardStatus(ev.target, data)
+        };
+
+        function allowDrop(ev) {
+            ev.preventDefault();
         };
 
     },
@@ -103,8 +140,8 @@ let dom = {
         /* places for cards to drop */
         let places = document.getElementsByClassName("place");
         for (let num=0; num<places.length; num++) {
+            places[num].addEventListener("dragover", allowDrop);
             places[num].addEventListener("drop", drop);
-            places[num].addEventListener("dragover", allowDrop)
         };
     },
 
