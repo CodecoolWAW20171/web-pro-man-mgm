@@ -87,6 +87,15 @@ let dataHandler = {
         };
     })
     return order;
-}
-// here comes more features
+},
+    changeCardStatus: function (targetElement, cardID) {
+    let statusDiv = targetElement.parentElement.className;
+    let status = parseInt(statusDiv[statusDiv.length - 1],10);
+    for (let i=0; i<dataHandler._data.cards.length;i++) {
+        if (dataHandler._data.cards[i].id === parseInt(cardID,10)) {
+            dataHandler._data.cards[i].status_id = status;
+        }
+    }
+    dataHandler._saveData();
+    }
 }

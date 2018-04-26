@@ -59,6 +59,7 @@ let dom = {
             }
             var data = ev.dataTransfer.getData("text");
             ev.target.appendChild(document.getElementById(data));
+            dataHandler.changeCardStatus(ev.target, data)
         };
 
         function allowDrop(ev) {
