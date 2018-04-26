@@ -49,8 +49,7 @@ let dom = {
                 submit.addEventListener("click", function () {
                     let formData = input.value;
                     dataHandler.createNewCard(formData, i + 1, 1)
-                    placeholder.removeChild(form)
-                    dom.loadCards(i + 1);
+                    placeholder.removeChild(form);
                 })
 
             })
