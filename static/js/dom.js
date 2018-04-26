@@ -35,21 +35,21 @@ let dom = {
                 let placeholder = newCardPosition.appendChild(placeForCard);
                 let form = document.createElement("form");
                 let input = document.createElement("input");
-                let submit = document.createElement("button")
+                let submit = document.createElement("input")
 
                 form.action = "/new-card";
                 form.method = "POST";
                 input.type = "text";
                 input.value = "New card name";
                 form.appendChild(input);
-                submit.type = "button"
-                submit.innerHTML += "Save"
+                submit.type = "submit"
+                submit.value = "Save"
+                submit.action = "/new-card"
                 form.appendChild(submit);
                 placeholder.appendChild(form);
                 submit.addEventListener("click", function () {
                     let formData = input.value;
                     dataHandler.createNewCard(formData, i + 1, 1)
-                    placeholder.removeChild(form);
                 })
 
             })
@@ -163,7 +163,7 @@ let dom = {
             let statusID = card.status_id;
             let cardID = card.id;
             let div = document.getElementById("status" + boardID + "_" + statusID)
-            div.innerHTML += (`<div class = "place"><span class=\"card\" id="${cardID}">${card.title}</span></div>`)
+            div.innerHTML += (`<div class = "place"><div class=\"card\" id="${cardID}">${card.title}</div></div>`)
 
         })
         let listCards = document.getElementsByClassName("card");

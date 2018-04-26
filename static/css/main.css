@@ -1,19 +1,20 @@
 .boards {
-    background-color: green;
+    background-color: rgb(113, 209, 113);
     display: block;
     width: 100%;
     clear: both;
 }
 
 .card {
-    width: 50px;
+    width: 75%;
     padding: 5px;
     border: 2px solid #640404;
 }
 
 .place {
-    width: 80px;
+    width: 80%;
     padding: 10px;
+    position: relative;
 }
 
 .place.active {

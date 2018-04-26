@@ -14,6 +14,10 @@ def new_board():
     return redirect("/")
 
 
+@app.route("/new-card", methods=["POST"])
+def new_card():
+    return redirect("/")
+
 def main():
     app.run(debug=True)
 
