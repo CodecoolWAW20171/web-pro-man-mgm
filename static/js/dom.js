@@ -12,11 +12,27 @@ let dom = {
         document.body.appendChild(boardsDiv);
         for (let i = 0; i < boards.length; i++) {
             let board = document.createElement('div');
-            board.setAttribute('id', 'board' + i);
             board.setAttribute('class', 'boards');
             board.setAttribute('id', 'board' + (i+1));
             board.innerHTML = boards[i].title + "<br><br>";
             boardsDiv.appendChild(board);
+            let hideBtn = document.createElement('button');
+            hideBtn.setAttribute('class', 'hide');
+            hideBtn.setAttribute('id', 'hide' + (i+1));
+            board.appendChild(hideBtn);
+            let mainDivForStatuses = document.createElement("div");
+            hideBtn.textContent = "Hide";
+            board.appendChild(mainDivForStatuses);
+            hideBtn.addEventListener("click", function(){
+                if (mainDivForStatuses.style.display === "none") {
+                    hideBtn.textContent = "Hide";
+                    mainDivForStatuses.style.display = "block";
+                } else {
+                    mainDivForStatuses.style.display = "none";
+                    hideBtn.textContent = "Show";
+                }
+            });
+
 
             /* appending statuses dives, for testing actually: */
             for (let j=1; j<=dataHandler._data.statuses.length; j++) {
@@ -24,7 +40,7 @@ let dom = {
                 statusDiv.setAttribute('class', 'status' + j);
                 statusDiv.setAttribute('id', 'status' + (i+1) + '_' + j);
                 statusDiv.innerHTML = dataHandler._data.statuses[j-1].name + "<br>";
-                board.appendChild(statusDiv);
+                mainDivForStatuses.appendChild(statusDiv);
                 placeForCard = document.createElement('div');
                 placeForCard.setAttribute('class', 'place');
                 placeForCard.style.border = "3px solid darkseagreen";
