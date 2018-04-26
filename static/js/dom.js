@@ -12,16 +12,25 @@ let dom = {
         document.body.appendChild(boardsDiv);
         for (let i = 0; i < boards.length; i++) {
             let board = document.createElement('div');
+            let hideBtn = document.createElement('button');
+            let mainDivForStatuses = document.createElement("div");
+            let newCardBtn = document.createElement('button');
+
             board.setAttribute('class', 'boards');
             board.setAttribute('id', 'board' + (i+1));
             board.innerHTML = boards[i].title + "<br><br>";
             boardsDiv.appendChild(board);
-            let hideBtn = document.createElement('button');
+
             hideBtn.setAttribute('class', 'hide');
             hideBtn.setAttribute('id', 'hide' + (i+1));
             board.appendChild(hideBtn);
-            let mainDivForStatuses = document.createElement("div");
             hideBtn.textContent = "Hide";
+
+            newCardBtn.class = 'new-card-btn';
+            newCardBtn.id = 'add-card-board-' + (i+1);
+            board.appendChild(newCardBtn);
+            newCardBtn.textContent = "+ New Card"
+
             board.appendChild(mainDivForStatuses);
             hideBtn.addEventListener("click", function(){
                 if (mainDivForStatuses.style.display === "none") {
