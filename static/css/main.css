@@ -16,6 +16,13 @@
     padding: 10px;
 }
 
+.hide {
+    background-color: floralwhite;
+    top: 10%;
+    clear: both;
+    position: relative;
+}
+
 .status1 {
     background-color: darkseagreen;
     margin-bottom:30px;
