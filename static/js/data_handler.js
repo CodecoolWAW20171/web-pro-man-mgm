@@ -67,7 +67,7 @@ let dataHandler = {
         dataHandler._saveData();
         callback(board);
     },
-    createNewCard: function (cardTitle, boardId, statusId, callback) {
+    createNewCard: function (cardTitle, boardId, statusId) {
         // creates new card, saves it and calls the callback function with its data
         let card = {
             "id": dataHandler._data.cards.length + 1,
@@ -76,7 +76,8 @@ let dataHandler = {
             "status_id": statusId,
             "order": dataHandler.getNewCardOrder(statusId, boardId),
         }
-        callback(card)
+        dataHandler._data.cards.push(card);
+        dataHandler._saveData();
     },
     getNewCardOrder: function (statusID, boardID) {
     let cards = dataHandler._data.cards;
